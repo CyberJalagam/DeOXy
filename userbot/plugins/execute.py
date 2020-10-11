@@ -6,7 +6,7 @@ import sys
 import io
 
 
-@command(pattern="^.execute")
+@client.on(events(pattern="execute"))
 async def _(event):
     if event.fwd_from:
         return
@@ -66,3 +66,9 @@ async def aexec(code, event):
         ''.join(f'\n {l}' for l in code.split('\n'))
     )
     return await locals()['__aexec'](event)
+
+
+HELPER.update({"execute": "\
+**Available commands in execute module:**\
+\n`.execute`\
+")}

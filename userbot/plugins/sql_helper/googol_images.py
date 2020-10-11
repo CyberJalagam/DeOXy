@@ -1016,3 +1016,8 @@ if __name__ == "__main__":
     main()
 
 # In[ ]:
+
+
+HELPER.update({"googol_images": "\
+**Available commands in googol_images module:**\
+")}

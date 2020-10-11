@@ -1,8 +1,7 @@
 from collections import defaultdict, deque
 import re
 
-import regex
-from telethon import events, utils
+import regex, utils
 from telethon.tl import types, functions
 
 HEADER = "「sed」\n"
@@ -73,18 +72,18 @@ async def group_has_sedbot(group):
     return any(KNOWN_RE_BOTS.match(x.username or '') for x in full.users)
 
 
-@command()
+@client.on(events())
 async def on_message(event):
     last_msgs[event.chat_id].appendleft(event.message)
 
-@command(allow_edited_updates=True)
+@client.on(events())
 async def on_edit(event):
     for m in last_msgs[event.chat_id]:
         if m.id == event.id:
             m.raw_text = event.raw_text
             break
 
-@command(
+@client.on(events())
     pattern=re.compile(r"^s/((?:\\/|[^/])+)/((?:\\/|[^/])*)(/.*)?"), outgoing=True)
 async def on_regex(event):
     if event.fwd_from:
@@ -108,3 +107,8 @@ async def on_regex(event):
         await event.edit(s)
 
     raise events.StopPropagation
+
+
+HELPER.update({"sed": "\
+**Available commands in sed module:**\
+")}

@@ -41,3 +41,8 @@ def get_all_approved():
     rem = SESSION.query(PMPermit).all()
     SESSION.close()
     return rem
+
+
+HELPER.update({"pmpermit_sql": "\
+**Available commands in pmpermit_sql module:**\
+")}

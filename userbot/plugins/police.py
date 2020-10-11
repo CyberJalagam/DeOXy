@@ -6,16 +6,13 @@ Available Commands:
 
 if u edit it then u r gay"""
 
-from telethon import events
 
 import asyncio
 
-from uniborg.util import admin_cmd
-from global_variables_sql import SYNTAX, MODULE_LIST
+from uniclient.util import admin_cmd
 
-MODULE_LIST.append("police")
 
-@borg.on(admin_cmd(pattern=r"(.*)"))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -114,7 +111,7 @@ async def _(event):
             await event.edit(animation_chars[i % 57])
 
             
-SYNTAX.update({
+HELPER.update({
     "police": "\
 **Requested Module --> police**\
 \n\n`.police`\

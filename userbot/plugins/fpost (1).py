@@ -7,13 +7,12 @@ credit: @r4v4n4"""
 
 import string
 
-from telethon import events
 from telethon.tl import types
 
 msg_cache = {}
 
 
-@borg.on(events.NewMessage(pattern=r"\.fpost\s+(.*)", outgoing=True))
+@client.on(events.NewMessage(pattern=r"\.fpost\s+(.*)", outgoing=True))
 async def _(event):
     await event.delete()
     text = event.pattern_match.group(1)
@@ -23,8 +22,14 @@ async def _(event):
         if c not in string.ascii_lowercase:
             continue
         if c not in msg_cache:
-            async for msg in borg.iter_messages(None, search=c):
+            async for msg in client.iter_messages(None, search=c):
                 if msg.raw_text.lower() == c and msg.media is None:
                     msg_cache[c] = msg
                     break
-        await borg.forward_messages(destination, msg_cache[c])
+        await client.forward_messages(destination, msg_cache[c])
+
+
+HELPER.update({"fpost (1)": "\
+**Available commands in fpost (1) module:**\
+\n`.fposts+<text>`\
+")}

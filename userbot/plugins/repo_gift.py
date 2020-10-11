@@ -5,36 +5,19 @@ Available Commands:
 
 .lucky"""
 
-from telethon import events
-from global_variables_sql import SYNTAX, MODULE_LIST
 
 import asyncio
 
 
 
-MODULE_LIST.append("lucky")
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
+@client.on(events(pattern="lucky (.*)"))
 async def _(event):
-
     if event.fwd_from:
-
         return
-
-    animation_interval = 0.5
-
     animation_ttl = range(0, 17)
-
-    input_str = event.pattern_match.group(1)
-
-    if input_str == "lucky":
-
-        await event.edit(input_str)
-
-        animation_chars = [
-        
+    animation_chars = [
             "⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜[🎁](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/)⬜",
             "⬛⬜⬜⬜⬜\n👇⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜[🎁](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/)⬜",
             "⬛⬛⬜⬜⬜\n⬜👇⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜[🎁](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/)⬜",
@@ -52,16 +35,12 @@ async def _(event):
             "⬜⬜⬜\n⬜⬜⬜\n⬜⬜⬜",
             "⬜⬜\n⬜⬜",
             "[🎁](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/)"
-
  ]
-
         for i in animation_ttl:
-
-            await asyncio.sleep(animation_interval)
-
+            await asyncio.sleep(0.5)
             await event.edit(animation_chars[i % 17])
 
-SYNTAX.update({
+HELPER.update({
     "lucky": f"\
 **Requested Module --> Lucky**\
 \n\nDetailed usage of fuction(s):\

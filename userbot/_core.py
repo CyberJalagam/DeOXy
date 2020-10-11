@@ -20,9 +20,9 @@ async def install(event):
         return
     if event.reply_to_msg_id:
         try:
-            downloaded_file_name = await event.client.download_media(  # pylint:disable=E0602
+            downloaded_file_name = await event.client.download_media(  
                 await event.get_reply_message(),
-                "userbot/plugins/"  # pylint:disable=E0602
+                "userbot/plugins/"  
             )
             if "(" not in downloaded_file_name:
                 path1 = Path(downloaded_file_name)
@@ -46,7 +46,7 @@ async def send(event):
     input_str = event.pattern_match["shortname"]
     the_plugin_file = "./userbot/plugins/{}.py".format(input_str)
     start = datetime.now()
-    await event.client.send_file(  # pylint:disable=E0602
+    await event.client.send_file(  
         event.chat_id,
         the_plugin_file,
         force_document=True,

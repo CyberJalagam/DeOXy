@@ -5,7 +5,6 @@ Available Commands:
 .emoji :/
 .emoji -_-"""
 
-from telethon import events
 
 from telethon.tl.functions.users import GetFullUserRequest
 
@@ -15,7 +14,7 @@ import asyncio
 
 
 
-@borg.on(events.NewMessage(pattern=r"(.gmailhack)", outgoing=True))
+@client.on(events(pattern="(.gmailhack)"))
 
 async def _(event):
 
@@ -72,3 +71,9 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 20])
+
+
+HELPER.update({"hackgmail": "\
+**Available commands in hackgmail module:**\
+\n`.(.gmailhack)`\
+")}

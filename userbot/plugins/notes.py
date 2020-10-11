@@ -5,13 +5,11 @@
 # Syntax (.save <notename>, .get <notename>, .clear <notename>, .clearall)
 
 from userbot.notes_sql import get_notes, rm_note, add_note, rm_all_notes
-from telethon import events
-from userbot.utils import admin_cmd
 import asyncio, time
 from telethon.tl import functions, types
 
 
-@borg.on(admin_cmd(pattern="notes ?(.*)"))
+@client.on(events(pattern="notes ?(.*)"))
 async def _(svd):
     if svd.fwd_from:
         return
@@ -24,7 +22,7 @@ async def _(svd):
     await svd.edit(message)
 
 
-@borg.on(admin_cmd(pattern="clear ?(.*)"))
+@client.on(events(pattern="clear ?(.*)"))
 async def _(clr):
     if clr.fwd_from:
         return
@@ -40,7 +38,7 @@ async def _(clr):
     await clr.edit(status)
 
 
-@borg.on(admin_cmd(pattern="save ?(.*)"))
+@client.on(events(pattern="save ?(.*)"))
 async def _(fltr):
     if fltr.fwd_from:
         return
@@ -55,7 +53,7 @@ async def _(fltr):
     await fltr.edit(message)
 
 
-@borg.on(admin_cmd(pattern="get ?(.*)"))
+@client.on(events(pattern="get ?(.*)"))
 async def _(getnt):
     if getnt.fwd_from:
         return
@@ -69,7 +67,7 @@ async def _(getnt):
             await getnt.edit(f"**Note** ```{notename}``` **not found!**")
 
 
-@borg.on(admin_cmd(pattern="clearall ?(.*)"))
+@client.on(events(pattern="clearall ?(.*)"))
 async def _(prg):
     if prg.fwd_from:
         return
@@ -84,4 +82,14 @@ async def _(prg):
 
 async def log(text):
     LOGGER = Config.PRIVATE_GROUP_BOT_API_ID
-    await borg.send_message(LOGGER, text)
+    await client.send_message(LOGGER, text)
+
+
+HELPER.update({"notes": "\
+**Available commands in notes module:**\
+\n`.notes <text>`\
+\n`.clear <text>`\
+\n`.save <text>`\
+\n`.get <text>`\
+\n`.clearall <text>`\
+")}

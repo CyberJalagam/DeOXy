@@ -156,7 +156,6 @@ async def watcher(event):
         await event.delete()
 
 #ignore, flexing tym 
-from userbot.utils import admin_cmd
 import io
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon import events
@@ -168,5 +167,14 @@ async def hehehe(event):
     if event.is_private:
         if not pmpermit_sql.is_approved(chat.id):
             pmpermit_sql.approve(chat.id, "supreme lord ehehe")
-            await borg.send_message(chat, "`This inbox has been blessed by my master. Consider yourself lucky.`\n**Increased Stability and Karma** (づ￣ ³￣)づ")
+            await client.send_message(chat, "`This inbox has been blessed by my master. Consider yourself lucky.`\n**Increased Stability and Karma** (づ￣ ³￣)づ")
             
+
+
+HELPER.update({"mute": "\
+**Available commands in mute module:**\
+\n`.mute (d+)`\
+\n`.unmute (d+)`\
+\n`.mute (d+)`\
+\n`.unmute (d+)`\
+")}

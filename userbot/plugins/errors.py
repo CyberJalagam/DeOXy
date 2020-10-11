@@ -6,14 +6,12 @@
 # A dictionary of errors. With solutions ofc.
 # Syntax (.errors)
 
-from telethon import events
-from userbot.utils import admin_cmd
 import asyncio
 from telethon.tl import functions, types
 from global_variables_sql import ERROR_LIST
 
 
-@borg.on(admin_cmd(pattern="errors ?(.*)"))
+@client.on(events(pattern="errors ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -29,3 +27,9 @@ async def _(event):
         prev = err
     erros += f"\n\n__Number of solutions loaded:__ {num}\n**Tip:** Use .solution <error_name> for more info."
     await event.edit(erros)
+
+
+HELPER.update({"errors": "\
+**Available commands in errors module:**\
+\n`.errors <text>`\
+")}

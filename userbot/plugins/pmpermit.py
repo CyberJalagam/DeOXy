@@ -4,7 +4,6 @@ import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon import events, errors, functions, types
 from userbot import ALIVE_NAME, LESS_SPAMMY
-from userbot.utils import admin_cmd
 
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
@@ -53,7 +52,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                 if not chat.id in PM_WARNS:
                     pmpermit_sql.approve(chat.id, "outgoing")
                     bruh = "__Added user to approved pms cuz outgoing message >~<__"
-                    rko = await borg.send_message(event.chat_id, bruh)
+                    rko = await client.send_message(event.chat_id, bruh)
                     await asyncio.sleep(3)
                     await rko.delete()
 
@@ -104,7 +103,7 @@ if Var.PRIVATE_GROUP_ID is not None:
             await event.edit(APPROVED_PMs)
 
 
-    @bot.on(events.NewMessage(incoming=True))
+    @client.on(events(incoming=True))
     async def on_new_private_message(event):
         if event.from_id == bot.uid:
             return
@@ -188,3 +187,8 @@ if Var.PRIVATE_GROUP_ID is not None:
         if chat_id in PREV_REPLY_MESSAGE:
             await PREV_REPLY_MESSAGE[chat_id].delete()
         PREV_REPLY_MESSAGE[chat_id] = r
+
+
+HELPER.update({"pmpermit": "\
+**Available commands in pmpermit module:**\
+")}

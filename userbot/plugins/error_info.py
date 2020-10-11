@@ -2,11 +2,9 @@
 # By @Techy05 (DON'T REMOVE THESE LINES)
 #Ported to DeOXy
 ## Don't modify this module
+, ERROR, ERROR_LIST
 
-from global_variables_sql import SYNTAX, MODULE_LIST, ERROR, ERROR_LIST
-
-MODULE_LIST.append("errors")
-SYNTAX.update({
+HELPER.update({
     "errors": "\
 **Getting issues while using 𝔡𝓔𝐎𝕩𝕐? Or a modules aren't working?**\
 \nDon't worry, Let's fix them\

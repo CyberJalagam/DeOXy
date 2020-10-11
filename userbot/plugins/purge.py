@@ -9,11 +9,11 @@ from asyncio import sleep
 
 from telethon.errors import rpcbaseerrors
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG, BOTLOG_CHATID, HELPER
 from userbot.utils import register, errors_handler
 
 
-@register(outgoing=True, pattern="^.purge$")
+@client.on(events(pattern="purge"))
 @errors_handler
 async def fastpurger(purg):
     """ For .purge command, purge all messages starting from the reply. """
@@ -45,7 +45,7 @@ async def fastpurger(purg):
     await done.delete()
 
 
-@register(outgoing=True, pattern="^.purgeme")
+@client.on(events(pattern="purgeme"))
 @errors_handler
 async def purgeme(delme):
     """ For .purgeme, delete x count of your latest message."""
@@ -73,7 +73,7 @@ async def purgeme(delme):
     await smsg.delete()
 
 
-@register(outgoing=True, pattern="^.del$")
+@client.on(events(pattern="del"))
 @errors_handler
 async def delete_it(delme):
     """ For .del command, delete the replied message. """
@@ -91,7 +91,7 @@ async def delete_it(delme):
                     BOTLOG_CHATID, "Well, I can't delete a message")
 
 
-@register(outgoing=True, pattern="^.edit")
+@client.on(events(pattern="edit"))
 @errors_handler
 async def editer(edit):
     """ For .editme command, edit your last message. """
@@ -111,7 +111,7 @@ async def editer(edit):
                                        "Edit query was executed successfully")
 
 
-@register(outgoing=True, pattern="^.sd")
+@client.on(events(pattern="sd"))
 @errors_handler
 async def selfdestruct(destroy):
     """ For .sd command, make seflf-destructable messages. """
@@ -127,30 +127,40 @@ async def selfdestruct(destroy):
                                           "sd query done successfully")
 
 
-CMD_HELP.update({
+HELPER.update({
     'purge':
     '.purge\
         \nUsage: Purges all messages starting from the reply.'
 })
 
-CMD_HELP.update({
+HELPER.update({
     'purgeme':
     '.purgeme <x>\
         \nUsage: Deletes x amount of your latest messages.'
 })
 
-CMD_HELP.update({"del": ".del\
+HELPER.update({"del": ".del\
 \nUsage: Deletes the message you replied to."})
 
-CMD_HELP.update({
+HELPER.update({
     'edit':
     ".edit <newmessage>\
 \nUsage: Replace your last message with <newmessage>."
 })
 
-CMD_HELP.update({
+HELPER.update({
     'sd':
     '.sd <x> <message>\
 \nUsage: Creates a message that selfdestructs in x seconds.\
 \nKeep the seconds under 100 since it puts your bot to sleep.'
 })
+
+
+HELPER.update({"purge": "\
+**Available commands in purge module:**\
+\n`.purge`\
+\n`.purgeme`\
+\n`.del`\
+\n`.edit`\
+\n`.sd`\
+")}

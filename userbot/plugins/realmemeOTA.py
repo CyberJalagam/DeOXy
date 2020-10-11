@@ -2,12 +2,11 @@
 # By Priyam Kalra
 # Syntax (.rmota <device_model>)
 #Ported To DeOXy By MrMobTech
-from telethon import events
 from telethon.tl import functions, types
-from uniborg.util import admin_cmd
+from uniclient.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="rmota ?(.*)"))
+@client.on(events(pattern="rmota ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -24,7 +23,7 @@ async def _(event):
     bot = "@realmeupdaterbot"
     await event.edit(f"```Looking for latest OTA for {model}...```")
 
-    async with borg.conversation(bot) as bot_conv:
+    async with client.conversation(bot) as bot_conv:
         if True:
             response = await silently_send_message(bot_conv, "/start")
             if not response.text.startswith("Hey!"):
@@ -42,3 +41,9 @@ async def silently_send_message(conv, text):
     response = await conv.get_response()
     await conv.mark_read(message=response)
     return response
+
+
+HELPER.update({"realmemeOTA": "\
+**Available commands in realmemeOTA module:**\
+\n`.rmota <text>`\
+")}

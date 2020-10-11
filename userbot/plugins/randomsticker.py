@@ -7,13 +7,12 @@
 credit: lejend @r4v4n4"""
 
 import random
-
-from telethon import events, types, functions, utils
+, types, functions, utils
 
 
 def choser(cmd, pack, blacklist={}):
     docs = None
-    @borg.on(events.NewMessage(pattern=rf'\.{cmd}', outgoing=True))
+    @client.on(events.NewMessage(pattern=rf'\.{cmd}', outgoing=True))
     async def handler(event):
         await event.delete()
 
@@ -21,7 +20,7 @@ def choser(cmd, pack, blacklist={}):
         if docs is None:
             docs = [
                 utils.get_input_document(x)
-                for x in (await borg(functions.messages.GetStickerSetRequest(types.InputStickerSetShortName(pack)))).documents
+                for x in (await client(functions.messages.GetStickerSetRequest(types.InputStickerSetShortName(pack)))).documents
                 if x.id not in blacklist
             ]
 
@@ -45,3 +44,8 @@ choser('dab', 'DabOnHaters', {
     1653974154589767852,
     1653974154589768677
 })
+
+
+HELPER.update({"randomsticker": "\
+**Available commands in randomsticker module:**\
+")}

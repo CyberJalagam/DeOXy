@@ -33,14 +33,12 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
-from emoji import get_emoji_regexp
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
+from emoji import get_emoji_regexp, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.utils import register
-from global_variables_sql import SYNTAX, MODULE_LIST
 CARBONLANG = "auto"
 LANG = "en"
 
-@register(outgoing=True, pattern="^.carbon")
+@client.on(events(pattern="carbon"))
 async def carbon_api(e):
  if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
    """ A Wrapper for carbon.now.sh """
@@ -93,12 +91,11 @@ async def carbon_api(e):
    # Removing carbon.png after uploading
    await e.delete() # Deleting msg
    
-MODULE_LIST.append("carbon")
 
 
 
 
-SYNTAX.update({
+HELPER.update({
     "carbon": f"\
 **Requested Module --> Carbonizer**\
 \n\nDetailed usage of fuction(s):\

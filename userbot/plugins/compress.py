@@ -9,21 +9,16 @@ import time as t
 from datetime import datetime
 import subprocess
 from pySmartDL import SmartDL
-from telethon import events
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
-from userbot.utils import admin_cmd, humanbytes, progress, time_formatter
+from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo, humanbytes, progress, time_formatter
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from telethon import events
-from global_variables_sql import SYNTAX, MODULE_LIST
 import zipfile
 
-MODULE_LIST.append("Zip/Unzipper")
 
 extracted = Config.TMP_DOWNLOAD_DIRECTORY + "extracted/"
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
-@borg.on(admin_cmd("zip"))
+@client.on(events(pattern="zip"))
 async def _(event):
     if event.fwd_from:
         return
@@ -36,7 +31,7 @@ async def _(event):
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
         try:
-            downloaded_file_name = await borg.download_media(
+            downloaded_file_name = await client.download_media(
                 reply_message,
                 Config.TMP_DOWNLOAD_DIRECTORY,
             )
@@ -45,7 +40,7 @@ async def _(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await mone.edit(str(e))
     zipfile.ZipFile(directory_name + '.zip', 'w', zipfile.ZIP_DEFLATED).write(directory_name)
-    await borg.send_file(
+    await client.send_file(
         event.chat_id,
         directory_name + ".zip",
         caption="**Zipped!**",
@@ -65,7 +60,7 @@ def zipdir(path, ziph):
             os.remove(os.path.join(root, file))
 
 
-@command(pattern="^.unzip")
+@client.on(events(pattern="unzip"))
 async def _(event):
     if event.fwd_from:
         return
@@ -135,7 +130,7 @@ def get_lst_of_files(input_directory, output_lst):
         output_lst.append(current_file_name)
     return output_lst
 
-SYNTAX.update({
+HELPER.update({
     "Zip/Unzipper": f"\
 **Requested Module --> Compression Module**\
 \n\nDetailed usage of fuction(s):\

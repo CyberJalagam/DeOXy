@@ -4,9 +4,9 @@ import datetime
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from uniborg.util import admin_cmd
+from uniclient.util import admin_cmd
 
-@borg.on(admin_cmd(pattern="qbot ?(.*)"))
+@client.on(events(pattern="qbot ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -36,3 +36,9 @@ async def _(event):
           else: 
              await event.delete()
              await event.client.send_message(event.chat_id, response.message)
+
+
+HELPER.update({"quotly": "\
+**Available commands in quotly module:**\
+\n`.qbot <text>`\
+")}

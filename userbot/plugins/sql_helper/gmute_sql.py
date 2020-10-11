@@ -38,3 +38,8 @@ def ungmute(sender):
     if rem:
         SESSION.delete(rem)
         SESSION.commit()
+
+
+HELPER.update({"gmute_sql": "\
+**Available commands in gmute_sql module:**\
+")}

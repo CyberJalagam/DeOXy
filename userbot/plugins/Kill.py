@@ -1,12 +1,9 @@
 """COMMAND : .kill"""
 
-from telethon import events
 import asyncio
-from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("kill")
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -46,7 +43,7 @@ async def _(event):
 
             await event.edit(animation_chars[i % 103])
 
-SYNTAX.update({
+HELPER.update({
     "kill": f"\
 **Requested Module --> Message Killer**\
 \n\nDetailed usage of fuction(s):\

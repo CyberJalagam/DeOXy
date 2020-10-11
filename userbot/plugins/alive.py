@@ -1,19 +1,12 @@
 """Check if userbot alive. If you change these, you become the gayest gay such that even the gay world will disown you."""
 import asyncio
-from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
 from platform import uname
-from userbot import ALIVE_NAME
-from userbot.utils import admin_cmd
-from global_variables_sql import SYNTAX, MODULE_LIST
 
 
-MODULE_LIST.append("alive")
+DEFAULTUSER = Var.ALIVE_NAME if Var.ALIVE_NAME else f"[{(await client.get_me()).first_name}](tg://user?id={(await client.get_me()).id})"
 
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DeOXy Master- No Name Specified"
-
-@command(outgoing=True, pattern="^.alive$")
+@client.on(events(pattern="alive"))
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit("•´¯``•.¸¸.•` 𝔡𝓔𝐎𝕩𝕐 `•.¸¸.•´´¯`•\n\n"
@@ -25,7 +18,7 @@ async def amireallyalive(alive):
                      "**◆ ---------------- ✪ ----------------◆**\n\n"
                      "                  ★彡 [GitHub](https://github.com/CyberJalagam/DeOXy) 彡★"
                      "                                                ")
-SYNTAX.update({
+HELPER.update({
     "alive": "\
 **Requested Module --> alive**\
 \n\n**Detailed usage of fuction(s):**\

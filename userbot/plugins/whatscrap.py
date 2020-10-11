@@ -1,9 +1,8 @@
 """Syntax: .whatscrapp as reply to a message copied from @WhatsCRApp"""
-from telethon import events
-from uniborg.util import admin_cmd
+from uniclient.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="whatscrapp"))
+@client.on(events(pattern="whatscrapp"))
 async def _(event):
     if event.fwd_from:
         return
@@ -16,3 +15,9 @@ async def _(event):
         await event.edit(the_real_message)
     else:
         await event.edit("Reply to a message with `.whatscrapp` to format @WhatsCRApp messages to @Telegram")
+
+
+HELPER.update({"whatscrap": "\
+**Available commands in whatscrap module:**\
+\n`.whatscrapp`\
+")}

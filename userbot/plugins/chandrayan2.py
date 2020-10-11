@@ -6,16 +6,15 @@ Available Commands:
 
 built by @r4v4n4 , isse bhi loot lo betichod"""
 
-from telethon import events
 
 import asyncio
 
-from uniborg.util import admin_cmd
+from uniclient.util import admin_cmd
 
 
 
 
-@borg.on(admin_cmd(pattern=r"isro"))
+@client.on(events(pattern="isro"))
 
 async def _(event):
 
@@ -67,3 +66,9 @@ async def _(event):
         await asyncio.sleep(animation_interval)
 
         await event.edit(animation_chars[i % 24])
+
+
+HELPER.update({"chandrayan2": "\
+**Available commands in chandrayan2 module:**\
+\n`.isro`\
+")}

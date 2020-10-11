@@ -76,3 +76,8 @@ def get_locks(chat_id):
         return SESSION.query(Locks).get(str(chat_id))
     finally:
         SESSION.close()
+
+
+HELPER.update({"locks_sql": "\
+**Available commands in locks_sql module:**\
+")}

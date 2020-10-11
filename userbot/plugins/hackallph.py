@@ -7,14 +7,13 @@
 #ANIMATION WRITTED BY @CyberJalagam
 #OpenSource
 
-from telethon import events
 import asyncio
 
-from uniborg.util import admin_cmd
+from uniclient.util import admin_cmd
 
 
 
-@borg.on(admin_cmd(pattern=r"(.*)"))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -78,3 +77,9 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 26])
+
+
+HELPER.update({"hackallph": "\
+**Available commands in hackallph module:**\
+\n`.<text>`\
+")}

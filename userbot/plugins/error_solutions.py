@@ -3,16 +3,12 @@
 # By @Techy05
 # You should use this module without proper credits
 # Syntax (.solution <error_name>)
-from telethon import events
-from userbot.utils import admin_cmd
 import asyncio
-from telethon.tl import functions, types
-from global_variables_sql import SYNTAX, MODULE_LIST, ERROR, ERROR_LIST
+from telethon.tl import functions, types, ERROR, ERROR_LIST
 
 
-MODULE_LIST.append("solution")
 
-@borg.on(admin_cmd(pattern="solution ?(.*)"))
+@client.on(events(pattern="solution ?(.*)"))
 async def _(event):
         if event.fwd_from:
             return

@@ -5,14 +5,13 @@ if you change these, you gay.
 """
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon import events
 from io import BytesIO
 from PIL import Image
 import asyncio
 import time
 from datetime import datetime
 from telethon.tl.types import DocumentAttributeVideo
-from uniborg.util import progress, humanbytes, time_formatter, admin_cmd
+from uniclient.util import progress, humanbytes, time_formatter, admin_cmd
 import datetime
 from collections import defaultdict
 import math
@@ -35,7 +34,7 @@ MessageMediaPhoto
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
 
-@borg.on(admin_cmd("mmf ?(.*)"))
+@client.on(events(pattern="mmf ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -55,15 +54,15 @@ async def _(event):
        return
     else:
        await event.edit("```Transfiguration Time! Mwahaha memifying this image! (」ﾟﾛﾟ)｣ ```")
-    file = await borg.download_file(reply_message.media)
+    file = await client.download_file(reply_message.media)
     
-    async with borg.conversation("@MemeAutobot") as bot_conv:
+    async with client.conversation("@MemeAutobot") as bot_conv:
           try:
             memeVar = event.pattern_match.group(1)
             await silently_send_message(bot_conv, "/start")
             await asyncio.sleep(1)
             await silently_send_message(bot_conv, memeVar)
-            await borg.send_file(chat, reply_message.media)
+            await client.send_file(chat, reply_message.media)
             response = await bot_conv.get_response()
           except YouBlockedUserError: 
               await event.reply("```Please unblock @MemeAutobot and try again```")
@@ -83,12 +82,12 @@ async def _(event):
                 reply_message = await event.get_reply_message()
                 to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
                 downloaded_file_name = os.path.join(to_download_directory, file_name)
-                downloaded_file_name = await borg.download_media(
+                downloaded_file_name = await client.download_media(
                     reply_message,
                     downloaded_file_name,
                     )
                 if os.path.exists(downloaded_file_name):
-                    await borg.send_file(
+                    await client.send_file(
                         chat,
                         downloaded_file_name,
                         force_document=False,
@@ -103,12 +102,12 @@ async def _(event):
             the_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
             files_name = "memes.webp"
             download_file_name = os.path.join(the_download_directory, files_name)
-            await borg.download_media(
+            await client.download_media(
                 response.media,
                 download_file_name,
                 )
             requires_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "memes.webp"
-            await borg.send_file(  # pylint:disable=E0602
+            await client.send_file(  
                 event.chat_id,
                 requires_file_name,
                 supports_streaming=False,
@@ -116,14 +115,14 @@ async def _(event):
                 # Courtesy: @A_Dark_Princ3
             )
             await event.delete()
-            sax = await borg.send_message(event.chat_id, "`☠️☠️10 Points to Griffindor!🔥🔥`")
+            sax = await client.send_message(event.chat_id, "`☠️☠️10 Points to Griffindor!🔥🔥`")
             await asyncio.sleep(4)
             sax.delete()
           elif not is_message_image(reply_message):
             await event.edit("Invalid message type. Plz choose right message type u NIBBA.")
             return
           else: 
-               await borg.send_file(event.chat_id, response.media)
+               await client.send_file(event.chat_id, response.media)
 
 def is_message_image(message):
     if message.media:
@@ -141,3 +140,9 @@ async def silently_send_message(conv, text):
     await conv.mark_read(message=response)
     return response
     
+
+
+HELPER.update({"memify": "\
+**Available commands in memify module:**\
+\n`.mmf <text>`\
+")}
