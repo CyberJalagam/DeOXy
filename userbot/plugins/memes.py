@@ -16,11 +16,11 @@ from collections import deque
 
 import requests
 
+from telethon import events as _events
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
 from cowpy import cow
-,YOUTUBE_API_KEY
 from userbot.utils import register
 
 # ================= CONSTANT =================
@@ -663,7 +663,7 @@ async def univsaye(cowmsg):
         await cowmsg.edit(f"`{cheese.milk(text).replace('`', '´')}`")
 
 
-@client.on(events(pattern=":/"))
+@client.on(_events.NewMessage(pattern=":/", outgoing=True))
 async def kek(keks):
     if not keks.text[0].isalpha() and keks.text[0] not in ("/", "#", "@", "!"):
         """ Check yourself ;)"""
@@ -770,7 +770,7 @@ async def slap(replied_user, event):
 
     return caption
 
-@client.on(events(pattern="-_-"))
+@client.on(_events.NewMessage(pattern="-_-", outgoing=True))
 async def lol(lel):
     if not lel.text[0].isalpha() and lel.text[0] not in ("/", "#", "@", "!"):
         """ Ok... """
@@ -796,7 +796,7 @@ async def _(event):
         )
         await event.delete()
 
-@client.on(events(pattern=";_;"))
+@client.on(_events.NewMessage(pattern=";_;", outgoing=True))
 async def fun(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         t = ";__;"
@@ -1309,7 +1309,7 @@ async def download_video(v_url):
         os.remove('thumbnail.jpg')
         await v_url.delete()
 			  
-@client.on(events())
+@client.on(events(pattern="type ?(.*)"))
 async def typewriter(typew):
     """ Just a small command to make your keyboard become a typewriter! """
     if not typew.text[0].isalpha() and typew.text[0] not in ("/", "#", "@", "!"):
@@ -1414,50 +1414,3 @@ HELPER.update({
 \nUsage: Protects you from unwanted peeps.\
 \n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
 })
-
-
-HELPER.update({"memes": "\
-**Available commands in memes module:**\
-\n`.(w+)say <text>`\
-\n`.:/`\
-\n`.coinflip <text>`\
-\n`.slap(: |)<text>`\
-\n`.-_-`\
-\n`.decide`\
-\n`.;_;`\
-\n`.cry`\
-\n`.insult`\
-\n`.cp(: |)<text>`\
-\n`.vapor(: |)<text>`\
-\n`.repo`\
-\n`.str(: |)<text>`\
-\n`.zal(: |)<text>`\
-\n`.hi`\
-\n`.kill`\
-\n`.bt`\
-\n`.rape`\
-\n`.pro`\
-\n`.fuk`\
-\n`.chu`\
-\n`.thanos`\
-\n`.abusehard`\
-\n`.gey`\
-\n`.abuse`\
-\n`.owo(: |)<text>`\
-\n`.react`\
-\n`.shg`\
-\n`.runs`\
-\n`.noob`\
-\n`.rendi`\
-\n`.oof`\
-\n`.10iq`\
-\n`.moon`\
-\n`.clock`\
-\n`.mock(: |)<text>`\
-\n`.clap(: |)<text>`\
-\n`.bt`\
-\n`.smk <text>`\
-\n`.f <text>`\
-\n`.lfy <text>`\
-\n`.yt_dl (S*) (S*)`\
-")}

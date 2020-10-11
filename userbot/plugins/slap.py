@@ -4,8 +4,8 @@ usage:- .slap in reply to any message, or u gonna slap urself.
 
 """
 
-import sys, functions
-from uniclient.util import admin_cmd
+import sys
+from telethon import functions
 import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName

@@ -1,5 +1,4 @@
 """Syntax: .whatscrapp as reply to a message copied from @WhatsCRApp"""
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="whatscrapp"))

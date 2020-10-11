@@ -11,7 +11,7 @@ import asyncio
 import time
 from datetime import datetime
 from telethon.tl.types import DocumentAttributeVideo
-from uniclient.util import progress, humanbytes, time_formatter, admin_cmd
+from uniborg.util import progress, humanbytes, time_formatter, admin_cmd
 import datetime
 from collections import defaultdict
 import math

@@ -151,12 +151,6 @@ async def dyno_usage(dyno):
                            )
 
 
-@client.on(events(pattern="info heroku"))
-async def info(event):
-    await client.send_message(event.chat_id, "**Info for Module to Manage Heroku:**\n\n`.usage`\nUsage:__Check your heroku dyno hours status.__\n\n`.set var <NEW VAR> <VALUE>`\nUsage: __add new variable or update existing value variable__\n**!!! WARNING !!!, after setting a variable the bot will restart.**\n\n`.get var or .get var <VAR>`\nUsage: __get your existing varibles, use it only on your private group!__\n**This returns all of your private information, please be cautious...**\n\n`.del var <VAR>`\nUsage: __delete existing variable__\n**!!! WARNING !!!, after deleting variable the bot will restarted**")
-    await event.delete()
-
-
 def prettyjson(obj, indent=2, maxlinelength=80):
     """Renders JSON content with indentation and line splits/concatenations to fit maxlinelength.
     Only dicts, lists and basic types are supported"""
@@ -167,7 +161,13 @@ def prettyjson(obj, indent=2, maxlinelength=80):
 
 HELPER.update({"heroku": "\
 **Available commands in heroku module:**\
-\n`.(set|get|del) var(: |)<text>(: |)([sS]*)`\
-\n`.usage(: |)`\
-\n`.info heroku`\
+\n\n`.usage`\nUsage:__Check your heroku dyno hours status.__\
+\n\n`.set var <NEW VAR> <VALUE>`\
+\nUsage: __add new variable or update existing value variable__\
+\n**!!! WARNING !!!, after setting a variable the bot will restart.**\
+\n\n`.get var or .get var <VAR>`\
+\nUsage: __get your existing varibles, use it only on your private group!__\
+\n**This returns all of your private information, please be cautious...**\
+\n\n`.del var <VAR>`\nUsage: __delete existing variable__\
+\n**!!! WARNING !!!, after deleting variable the bot will restarted**\
 ")}

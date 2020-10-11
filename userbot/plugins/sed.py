@@ -1,7 +1,8 @@
 from collections import defaultdict, deque
 import re
 
-import regex, utils
+import regex
+from telethon import utils
 from telethon.tl import types, functions
 
 HEADER = "「sed」\n"

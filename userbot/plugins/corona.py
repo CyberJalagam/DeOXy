@@ -7,7 +7,6 @@ import datetime
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from uniclient.util import admin_cmd
 
 @client.on(events(pattern="corona ?(.*)"))
 async def _(event):

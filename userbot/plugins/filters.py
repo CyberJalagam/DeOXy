@@ -6,9 +6,10 @@ Available Commands:
 .savefilter
 .listfilters
 .clearfilter"""
+
 import asyncio
 import re
-from telethon import events, utils
+from telethon import utils
 from telethon.tl import types
 from userbot.plugins.sql_helper.filter_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
 
@@ -23,7 +24,7 @@ global last_triggered_filters
 last_triggered_filters = {}  
 
 
-@command(incoming=True)
+@client.on(events(incoming=True))
 async def on_snip(event):
     global last_triggered_filters
     name = event.raw_text

@@ -2,7 +2,8 @@ from math import ceil
 import asyncio
 import json
 import random
-import re, errors, custom
+import re
+from telethon import errors, custom
 from userbot import CMD_LIST
 import io
 

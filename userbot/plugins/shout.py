@@ -3,7 +3,8 @@ usage: .shout message
 originaly from : @corsicanu_bot
 """
 
-import sys, functions
+import sys
+from telethon import functions
 import random
 
 

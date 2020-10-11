@@ -1,7 +1,6 @@
 """WikiMedia.ORG
 Syntax: .wikimedia Query"""
 import requests
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="wikimedia (.*)"))

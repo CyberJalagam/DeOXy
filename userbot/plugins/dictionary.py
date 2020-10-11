@@ -2,7 +2,6 @@
 Syntax: .meaning <word>"""
 
 import requests
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="meaning (.*)"))

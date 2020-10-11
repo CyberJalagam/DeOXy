@@ -14,7 +14,6 @@ document
 cancel"""
 
 import asyncio
-from uniclient.util import admin_cmd
  
  
 @client.on(events(pattern="scha ?(.*)"))

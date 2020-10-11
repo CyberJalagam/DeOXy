@@ -2,7 +2,6 @@
 import asyncio
 from datetime import datetime
 import requests
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="currency (.*)"))

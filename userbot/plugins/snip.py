@@ -5,7 +5,8 @@
 Available Commands:
 .snips
 .snipl
-.snipd""", utils
+.snipd"""
+from telethon import events as _events, utils
 from telethon.tl import types
 from userbot.plugins.sql_helper.snips_sql import get_snips, add_snip, remove_snip, get_all_snips
 
@@ -15,7 +16,7 @@ TYPE_PHOTO = 1
 TYPE_DOCUMENT = 2
 
 
-@client.on(events.NewMessage(pattern=r'\#(\S+)', outgoing=True))
+@client.on(_events.NewMessage(pattern=r'\#(\S+)', outgoing=True))
 async def on_snip(event):
     name = event.pattern_match.group(1)
     snip = get_snips(name)

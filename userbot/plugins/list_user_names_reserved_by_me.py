@@ -1,10 +1,10 @@
 # For @UniBorg
 # (c) Shrimadhav U K
-, functions, types
+from telethon import functions, types
 import asyncio
 
 
-@client.on(events(pattern="-listmyusernames"))
+@client.on(events(pattern="listmyusernames"))
 async def _(event):
     if event.fwd_from:
         return
@@ -17,5 +17,5 @@ async def _(event):
 
 HELPER.update({"list_user_names_reserved_by_me": "\
 **Available commands in list_user_names_reserved_by_me module:**\
-\n`.-listmyusernames`\
+\n`.listmyusernames`\
 ")}

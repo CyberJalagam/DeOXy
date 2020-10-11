@@ -5,13 +5,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #Ported To X-Tra TG MOD 2.0 By MrMobTech
 
-, errors, functions, types
+from telethon import errors, functions, types
 import inspect
 import traceback
 import asyncio
 import sys
 import io
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="py"))

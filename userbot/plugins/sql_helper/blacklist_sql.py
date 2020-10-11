@@ -98,7 +98,3 @@ def __load_chat_blacklists():
 
 __load_chat_blacklists()
 
-
-HELPER.update({"blacklist_sql": "\
-**Available commands in blacklist_sql module:**\
-")}

@@ -9,7 +9,6 @@
 
 import asyncio
 
-from uniclient.util import admin_cmd
 
 
 

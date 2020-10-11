@@ -22,7 +22,6 @@ async def _(event):
 """.admin Plugin for @UniBorg"""
 import asyncio
 from telethon.tl.types import ChannelParticipantsAdmins
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="warn2"))
@@ -44,7 +43,6 @@ async def _(event):
 """.admin Plugin for @UniBorg"""
 import asyncio
 from telethon.tl.types import ChannelParticipantsAdmins
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="warn3"))
@@ -66,7 +64,6 @@ async def _(event):
 """.admin Plugin for @UniBorg"""
 import asyncio
 from telethon.tl.types import ChannelParticipantsAdmins
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="warn0"))

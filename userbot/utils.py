@@ -34,7 +34,7 @@ def command(**args):
             pass
 
         reg = re.compile('(.*)')
-        if not pattern == None:
+        if pattern is not None:
             try:
                 cmd = re.search(reg, pattern)
                 try:

@@ -3,7 +3,6 @@
 # Syntax (.rmota <device_model>)
 #Ported To DeOXy By MrMobTech
 from telethon.tl import functions, types
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="rmota ?(.*)"))

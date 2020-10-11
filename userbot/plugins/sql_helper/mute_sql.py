@@ -39,7 +39,3 @@ def unmute(sender, chat_id):
         SESSION.delete(rem)
         SESSION.commit()
 
-
-HELPER.update({"mute_sql": "\
-**Available commands in mute_sql module:**\
-")}

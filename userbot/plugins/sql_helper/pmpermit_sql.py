@@ -42,7 +42,3 @@ def get_all_approved():
     SESSION.close()
     return rem
 
-
-HELPER.update({"pmpermit_sql": "\
-**Available commands in pmpermit_sql module:**\
-")}

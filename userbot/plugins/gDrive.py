@@ -8,7 +8,7 @@ import os
 import time
 import math
 from datetime import datetime
-from uniclient.util import admin_cmd, progress
+from uniborg.util import progress
 #
 from googleapiclient.discovery import build
 from apiclient.http import MediaFileUpload

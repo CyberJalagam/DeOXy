@@ -76,7 +76,3 @@ def remove_all_filters(chat_id):
         saved_filter.delete()
         SESSION.commit()
 
-
-HELPER.update({"filter_sql": "\
-**Available commands in filter_sql module:**\
-")}

@@ -56,7 +56,6 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
 
-@client.on(events(pattern="zombies"))
 @client.on(events(pattern="zombies ?(.*)"))
 async def rm_deletedacc(show):
     """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
@@ -131,5 +130,5 @@ async def rm_deletedacc(show):
 HELPER.update({"zombies": "\
 **Available commands in zombies module:**\
 \n`.zombies`\
-\n`.zombies(: |)<text>`\
+\n`.zombies clean`\
 ")}

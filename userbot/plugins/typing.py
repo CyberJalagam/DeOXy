@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 import asyncio
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="typewriter (.*)"))

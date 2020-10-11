@@ -119,6 +119,6 @@ async def regressgban(tb):
 
 HELPER.update({"Gban": "\
 **Available commands in Gban module:**\
-\n`.gban(: |)<text>`\
-\n`.;ungban(: |)<text>`\
+\n`.gban <text>`\
+\n`.;ungban <text>`\
 ")}

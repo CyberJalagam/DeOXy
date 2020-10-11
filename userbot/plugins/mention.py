@@ -1,7 +1,6 @@
 # For Uniclient
 # (c) @INF1N17Y
 
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="mention (.*)"))

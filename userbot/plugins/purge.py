@@ -9,7 +9,7 @@ from asyncio import sleep
 
 from telethon.errors import rpcbaseerrors
 
-from userbot import BOTLOG, BOTLOG_CHATID, HELPER
+from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.utils import register, errors_handler
 
 
@@ -127,40 +127,17 @@ async def selfdestruct(destroy):
                                           "sd query done successfully")
 
 
-HELPER.update({
-    'purge':
-    '.purge\
-        \nUsage: Purges all messages starting from the reply.'
-})
-
-HELPER.update({
-    'purgeme':
-    '.purgeme <x>\
-        \nUsage: Deletes x amount of your latest messages.'
-})
-
-HELPER.update({"del": ".del\
-\nUsage: Deletes the message you replied to."})
-
-HELPER.update({
-    'edit':
-    ".edit <newmessage>\
-\nUsage: Replace your last message with <newmessage>."
-})
-
-HELPER.update({
-    'sd':
-    '.sd <x> <message>\
-\nUsage: Creates a message that selfdestructs in x seconds.\
-\nKeep the seconds under 100 since it puts your bot to sleep.'
-})
-
-
 HELPER.update({"purge": "\
 **Available commands in purge module:**\
-\n`.purge`\
-\n`.purgeme`\
-\n`.del`\
-\n`.edit`\
-\n`.sd`\
+\n\n`.purge`\
+\nUsage: Purges all messages starting from the reply.\
+\n\n`.purgeme`\
+\nUsage: Deletes x amount of your latest messages.\
+\n\n`.del`\
+\nUsage: Deletes the message you replied to.\
+\n\n`.edit`\
+\nUsage: Replace your last message with <newmessage>.\
+\n\n`.sd`\
+\nUsage: Creates a message that selfdestructs in x seconds.\
+\nKeep the seconds under 100 since it puts your bot to sleep.\
 ")}

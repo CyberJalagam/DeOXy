@@ -9,7 +9,6 @@ built by @r4v4n4 , isse bhi loot lo betichod"""
 
 import asyncio
 
-from uniclient.util import admin_cmd
 
 
 

@@ -2,7 +2,6 @@
 #By Priyam Kalra
 #Ported To X-tra MOD v2.0 By MrMobTech
 
-from uniclient.util import admin_cmd
 import asyncio
 import os
 from time import sleep

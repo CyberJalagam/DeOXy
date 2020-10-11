@@ -9,7 +9,6 @@ if u edit it then u r gay"""
 
 import asyncio
 
-from uniclient.util import admin_cmd
 
 
 @client.on(events(pattern="(.*)"))

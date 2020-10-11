@@ -6,10 +6,11 @@ import os
 import time
 from datetime import datetime
 from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser, progress
+from hachoir.parser import createParser
+from userbot.utils import progress
 
 
-FF_MPEG_DOWN_LOAD_MEDIA_PATH = "uniclient.media.ffmpeg"
+FF_MPEG_DOWN_LOAD_MEDIA_PATH = "uniborg.media.ffmpeg"
 
 
 @client.on(events(pattern="ffmpegsave"))

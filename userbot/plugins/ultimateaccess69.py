@@ -30,5 +30,5 @@ async def hitler(e):
 HELPER.update({"ultimateaccess69": "\
 **Available commands in ultimateaccess69 module:**\
 \n`.restart`\
-\n`.stop`\
+\n`.forcestop`\
 ")}

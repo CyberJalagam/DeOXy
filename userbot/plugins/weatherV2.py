@@ -10,9 +10,6 @@ from datetime import datetime, tzinfo
 import aiohttp
 
 
-from userbot.uniclientConfig import Config
-
-
 @client.on(events(pattern="weather (.*)"))
 async def _(event):
     if event.fwd_from:

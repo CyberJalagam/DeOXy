@@ -7,7 +7,7 @@
 credit: lejend @r4v4n4"""
 
 import random
-, types, functions, utils
+from telethon import types, functions, utils
 
 
 def choser(cmd, pack, blacklist={}):

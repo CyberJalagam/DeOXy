@@ -2,7 +2,6 @@
 # By Priyam Kalra
 #Ported To X-tra MOD 2.0 By MrMobTech
 
-from uniclient.util import admin_cmd
 from telethon.tl import functions, types
 import time
 

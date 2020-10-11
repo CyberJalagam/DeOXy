@@ -1,10 +1,10 @@
-from telethon import events
+from telethon import events as _events
 from telethon.utils import pack_bot_file_id
 from userbot.plugins.sql_helper.welcome_sql import get_current_welcome_settings, \
     add_welcome_setting, rm_welcome_setting, update_previous_welcome
 
 
-@bot.on(events.ChatAction())  
+@client.on(_events.ChatAction())  
 async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     if cws:

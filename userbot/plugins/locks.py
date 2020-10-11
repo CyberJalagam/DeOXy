@@ -3,7 +3,7 @@ Available Commands: .lock <option>, .unlock <option>, .locks
 API Options: msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo
 DB Options: bots, commands, email, forward, url"""
 
-from telethon import events, functions, types
+import telethon
 from userbot.plugins.sql_helper.locks_sql import update_lock, is_locked, get_locks
 
 
@@ -52,7 +52,7 @@ async def _(event):
                 cpin = True
             if "changeinfo" in input_str:
                 changeinfo = True
-        banned_rights = types.ChatBannedRights(
+        banned_rights = telethon.types.ChatBannedRights(
             until_date=None,
             # view_messages=None,
             send_messages=msg,
@@ -68,7 +68,7 @@ async def _(event):
         )
         try:
             result = await client(  
-                functions.messages.EditChatDefaultBannedRightsRequest(
+                telethon.functions.messages.EditChatDefaultBannedRightsRequest(
                     peer=peer_id,
                     banned_rights=banned_rights
                 )
@@ -133,7 +133,8 @@ async def _(event):
     await event.edit(res)
 
 
-@client.on(events())
+@client.on(telethon.events.MessageEdited())
+@client.on(events(incoming=True))
 async def check_incoming_messages(event):
     # TODO: exempt admins from locks
     peer_id = event.chat_id
@@ -142,7 +143,7 @@ async def check_incoming_messages(event):
         is_command = False
         if entities:
             for entity in entities:
-                if isinstance(entity, types.MessageEntityBotCommand):
+                if isinstance(entity, telethon.types.MessageEntityBotCommand):
                     is_command = True
         if is_command:
             try:
@@ -166,7 +167,7 @@ async def check_incoming_messages(event):
         is_email = False
         if entities:
             for entity in entities:
-                if isinstance(entity, types.MessageEntityEmail):
+                if isinstance(entity, telethon.types.MessageEntityEmail):
                     is_email = True
         if is_email:
             try:
@@ -181,7 +182,7 @@ async def check_incoming_messages(event):
         is_url = False
         if entities:
             for entity in entities:
-                if isinstance(entity, (types.MessageEntityTextUrl, types.MessageEntityUrl)):
+                if isinstance(entity, (telethon.types.MessageEntityTextUrl, telethon.types.MessageEntityUrl)):
                     is_url = True
         if is_url:
             try:
@@ -193,7 +194,8 @@ async def check_incoming_messages(event):
                 update_lock(peer_id, "url", False)
 
 
-@client.on(events())
+@client.on(telethon.events.ChatAction())
+@client.on(events(incoming=True))
 async def _(event):
     # TODO: exempt admins from locks
     # check for "lock" "bots"
@@ -203,7 +205,7 @@ async def _(event):
         if event.user_added:
             users_added_by = event.action_message.from_id
             is_ban_able = False
-            rights = types.ChatBannedRights(
+            rights = telethon.types.ChatBannedRights(
                 until_date=None,
                 view_messages=True
             )
@@ -213,7 +215,7 @@ async def _(event):
                 if user_obj.bot:
                     is_ban_able = True
                     try:
-                        await client(functions.channels.EditBannedRequest(
+                        await client(telethon.functions.channels.EditBannedRequest(
                             event.chat_id,
                             user_obj,
                             rights

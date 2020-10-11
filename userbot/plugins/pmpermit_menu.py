@@ -9,17 +9,18 @@ Modded By: Mr.MobTech {@CyberJalagam}
 import asyncio
 import io 
 import telethon.sync
+from telethon import events as _events
 from telethon.tl.functions.users import GetFullUserRequest
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
-from telethon import events, errors, functions, types
+from telethon import errors, functions, types
 from userbot import ALIVE_NAME, LESS_SPAMMY
 
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, Set a name nub"
+me = await client.get_me()
+DEFAULTUSER = str(Var.ALIVE_NAME) if Var.ALIVE_NAME else f"[{me.first_name}](tg://user?id={me.id})"
 PREV_REPLY_MESSAGE = {}
 
 
-@command(pattern=r"\/start", incoming=True)
+@client.on(_events.NewMessage(pattern=r"\/start", incoming=True))
 async def _(event):
     chat_id = event.from_id
     userid = event.sender_id
@@ -166,5 +167,5 @@ async def _(event):
 
 HELPER.update({"pmpermit_menu": "\
 **Available commands in pmpermit_menu module:**\
-\n`./start`\
+\n`/start`\
 ")}

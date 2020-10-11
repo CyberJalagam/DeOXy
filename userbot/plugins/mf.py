@@ -1,4 +1,5 @@
-import sys, functions, __version__
+import sys
+from telethon import functions, __version__
 
 
 @client.on(events(pattern="mf ?(.*)"))

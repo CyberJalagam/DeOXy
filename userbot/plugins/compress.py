@@ -9,7 +9,8 @@ import time as t
 from datetime import datetime
 import subprocess
 from pySmartDL import SmartDL
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo, humanbytes, progress, time_formatter
+from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
+from userbot.utils import humanbytes, progress, time_formatter
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 import zipfile

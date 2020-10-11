@@ -66,7 +66,3 @@ def remove_snip(keyword):
         note.delete()
         SESSION.commit()
 
-
-HELPER.update({"snips_sql": "\
-**Available commands in snips_sql module:**\
-")}

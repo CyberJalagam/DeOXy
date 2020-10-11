@@ -1,7 +1,6 @@
 """CoronaVirus LookUp
 Syntax: .covid <country>"""
 from covid import Covid
-from uniclient.util import admin_cmd
 
 @client.on(events(pattern="covid (.*)"))
 async def _(event):
